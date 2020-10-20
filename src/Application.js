@@ -1,24 +1,33 @@
 import React from 'react';
-import {Services} from "./http-services";
+import { Services } from './http-services';
+import { CustomMap } from './CustomMap';
+import { Infos } from './Infos';
+
 
 export class Application extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={getAllCountries:[]};
-        console.log(props.children)
-
+        this.state = {
+            allCountries: [],
+            currentCountry: null
+        };
     }
-    componentDidMount(){
-        Services.getAllCountries().then((results)=>{
-            console.table(results.data);
+    onCountryClick = country => {
+        this.setState({
+            currentCountry: country
+        });
+    };
+    render() {
+        return <>
+            <CustomMap onCountryClick={this.onCountryClick} allCountries={this.state.allCountries} />
+            <Infos currentCountry={this.state.currentCountry} />
+        </>;
+    }
+    componentDidMount() {
+        Services.getAllCountries().then((results) => {
             this.setState({
                 allCountries: results.data
-            })
-        })
-        console.log('componentDidmount');
-    }
-    render(){
-        const Children = ()=> this.props.children;
-        return <div>{JSON.stringify(this.state)}<Children/></div>;
+            });
+        });
     }
 }

@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Application} from './Application';
+import './stylesheets/main.scss';
+import { Application } from './Application';
+
 
 const root = document.getElementById('root');
-const actualDare = new Date();
-ReactDOM.render(<Application propriete1={actualDare}>
+const actualDate = new Date();
+ReactDOM.render(<Application propriete1={actualDate}>
     <div>
         <h3>Ceci est un titre</h3>
-        <p>lorem ipsumm</p>
+        <p>C'est un paragraphe</p>
     </div>
-    </Application>, root);
+</Application>, root);
