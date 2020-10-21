@@ -28,6 +28,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-leaflet": "^2.7.0",
+    "react-router-dom": "^5.2.0",
     "styl": "^0.2.9"
   }
 }
