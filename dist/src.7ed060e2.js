@@ -51417,7 +51417,10 @@ var Home = function Home(props) {
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "btn btn-primary",
     to: "/todo"
-  }, "Voir la liste des todos")), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
+  }, "Voir la liste des todos"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/persistent"
+  }, "Persistent")), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
     currentCountry: props.currentCountry
   }));
 };
@@ -51465,7 +51468,7 @@ var ToDo = function ToDo() {
       todoList = _useState2[0],
       updateToDoList = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       currentTodoDescription = _useState4[0],
       updateCurrentTodoDescription = _useState4[1];
@@ -51475,6 +51478,7 @@ var ToDo = function ToDo() {
 
     var newToDo = {
       created: Date.now(),
+      done: false,
       desc: currentTodoDescription
     };
     tabCopy.push(newToDo);
@@ -51485,11 +51489,43 @@ var ToDo = function ToDo() {
     updateCurrentTodoDescription(element.target.value);
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("input", {
+  var onToDoChange = function onToDoChange(domElement, toDo) {
+    var indexOfTodo = todoList.indexOf(toDo);
+
+    var tabCopy = _toConsumableArray(todoList);
+
+    tabCopy[indexOfTodo].done = domElement.target.checked;
+    updateToDoList(tabCopy);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/_react.default.createElement("input", {
     onChange: onTextInputChange,
     placeholder: "indiquez la description de votre tâche",
     type: "text"
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(todoList)), /*#__PURE__*/_react.default.createElement("form", {
+    className: "mb-3"
+  }, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, todoList.map(function (todo, index) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: index,
+      className: "list-group-item"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "form-check"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "visually-hidden"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      onChange: function onChange(element) {
+        return onToDoChange(element, todo);
+      },
+      className: "form-check-input mr-1",
+      type: "checkbox",
+      value: todo.done
+    }), todo.desc)));
+  }))), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: currentTodoDescription.length == 0 ? true : false,
     onClick: addTodo
   }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "btn btn-primary",
@@ -51498,6 +51534,28 @@ var ToDo = function ToDo() {
 };
 
 exports.ToDo = ToDo;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"../src/pages/Persistent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Persistent = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Persistent = function Persistent(props) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Persistent data"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/"
+  }, "Retour vers la home")));
+};
+
+exports.Persistent = Persistent;
 },{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"../src/Application.js":[function(require,module,exports) {
 "use strict";
 
@@ -51515,6 +51573,8 @@ var _reactRouterDom = require("react-router-dom");
 var _Home = require("./pages/Home");
 
 var _ToDo = require("./pages/ToDo");
+
+var _Persistent = require("./pages/Persistent");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51583,6 +51643,12 @@ var Application = /*#__PURE__*/function (_React$Component) {
         },
         exact: true,
         path: "/todo"
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        render: function render(props) {
+          return /*#__PURE__*/_react.default.createElement(_Persistent.Persistent, props);
+        },
+        exact: true,
+        path: "/persistent"
       })));
     }
   }, {
@@ -51602,7 +51668,7 @@ var Application = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.Application = Application;
-},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/Home":"../src/pages/Home.js","./pages/ToDo":"../src/pages/ToDo.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/Home":"../src/pages/Home.js","./pages/ToDo":"../src/pages/ToDo.js","./pages/Persistent":"../src/pages/Persistent.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -51646,7 +51712,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51636" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51873" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
