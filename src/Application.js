@@ -1,8 +1,8 @@
 import React from 'react';
 import { Services } from './http-services';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
-import { Home } from './pages/home.js';
-import { Todo } from './pages/todo.js'
+import { Home } from './pages/Home';
+import { ToDo } from './pages/ToDo';
 
 export class Application extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export class Application extends React.Component {
             currentCountry: null
         };
     }
-    onCountryClick = country => {
+    onCountryClick = (country) => {
         this.setState({
             currentCountry: country
         });
@@ -26,9 +26,7 @@ export class Application extends React.Component {
                         allCountries={this.state.allCountries}
                         currentCountry={this.state.currentCountry} />
                 </Route>
-                <Route exact path="/todo">
-                    <Todo/>    
-                </Route>
+                <Route render={props => <ToDo  {...props} />} exact path="/todo" />
             </Switch>
         </BrowserRouter>
     }

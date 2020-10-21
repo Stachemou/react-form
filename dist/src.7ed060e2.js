@@ -51360,19 +51360,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Infos = function Infos(props) {
   var CountryInfoList = function CountryInfoList() {
     return props.currentCountry ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Object.keys(props.currentCountry).map(function (name, index) {
-      return /*#__PURE__*/_react.default.createElement("div", {
-        key: index
+      return /*#__PURE__*/_react.default.createElement("li", {
+        key: index,
+        className: "list-group-item"
       }, name, ":", JSON.stringify(props.currentCountry[name]));
     })) : null;
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "info-container"
-  }, /*#__PURE__*/_react.default.createElement(CountryInfoList, null));
+    className: "info-container container-fluid"
+  }, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, /*#__PURE__*/_react.default.createElement(CountryInfoList, null)));
 };
 
 exports.Infos = Infos;
-},{"react":"../node_modules/react/index.js"}],"../src/pages/home.js":[function(require,module,exports) {
+
+/*#__PURE__*/
+_react.default.createElement("ul", {
+  class: "list-group"
+}, /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Cras justo odio"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Dapibus ac facilisis in"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Morbi leo risus"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Porta ac consectetur ac"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Vestibulum at eros"));
+},{"react":"../node_modules/react/index.js"}],"../src/pages/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51394,37 +51412,92 @@ var Home = function Home(props) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_CustomMap.CustomMap, {
     onCountryClick: props.onCountryClick,
     allCountries: props.allCountries
-  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "m-2 text-center"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
     to: "/todo"
-  }, "Voir la liste des todos"), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
+  }, "Voir la liste des todos")), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
     currentCountry: props.currentCountry
   }));
 };
 
 exports.Home = Home;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../CustomMap":"../src/CustomMap/index.js","../Infos":"../src/Infos/index.js"}],"../src/pages/todo.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../CustomMap":"../src/CustomMap/index.js","../Infos":"../src/Infos/index.js"}],"../src/pages/ToDo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Todo = void 0;
+exports.ToDo = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var Todo = function Todo(props) {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var ToDo = function ToDo() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todoList = _useState2[0],
+      updateToDoList = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentTodoDescription = _useState4[0],
+      updateCurrentTodoDescription = _useState4[1];
+
+  var addTodo = function addTodo() {
+    var tabCopy = _toConsumableArray(todoList);
+
+    var newToDo = {
+      created: Date.now(),
+      desc: currentTodoDescription
+    };
+    tabCopy.push(newToDo);
+    updateToDoList(tabCopy);
+  };
+
+  var onTextInputChange = function onTextInputChange(element) {
+    updateCurrentTodoDescription(element.target.value);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("input", {
+    onChange: onTextInputChange,
+    placeholder: "indiquez la description de votre tâche",
+    type: "text"
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: addTodo
+  }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
     to: "/"
-  }, "Retour vers la home"), " ", /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "liste des todos"));
+  }, "Retour vers la home"));
 };
 
-exports.Todo = Todo;
+exports.ToDo = ToDo;
 },{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"../src/Application.js":[function(require,module,exports) {
 "use strict";
 
@@ -51439,9 +51512,9 @@ var _httpServices = require("./http-services");
 
 var _reactRouterDom = require("react-router-dom");
 
-var _home = require("./pages/home.js");
+var _Home = require("./pages/Home");
 
-var _todo = require("./pages/todo.js");
+var _ToDo = require("./pages/ToDo");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51500,14 +51573,17 @@ var Application = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/"
-      }, /*#__PURE__*/_react.default.createElement(_home.Home, {
+      }, /*#__PURE__*/_react.default.createElement(_Home.Home, {
         onCountryClick: this.onCountryClick,
         allCountries: this.state.allCountries,
         currentCountry: this.state.currentCountry
       })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        render: function render(props) {
+          return /*#__PURE__*/_react.default.createElement(_ToDo.ToDo, props);
+        },
         exact: true,
         path: "/todo"
-      }, /*#__PURE__*/_react.default.createElement(_todo.Todo, null))));
+      })));
     }
   }, {
     key: "componentDidMount",
@@ -51526,7 +51602,7 @@ var Application = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.Application = Application;
-},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/home.js":"../src/pages/home.js","./pages/todo.js":"../src/pages/todo.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/Home":"../src/pages/Home.js","./pages/ToDo":"../src/pages/ToDo.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -51540,11 +51616,8 @@ var _Application = require("./Application");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var root = document.getElementById('root');
-var actualDate = new Date();
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_Application.Application, {
-  propriete1: actualDate
-}, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Ceci est un titre"), /*#__PURE__*/_react.default.createElement("p", null, "C'est un paragraphe"))), root);
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_Application.Application, null), root);
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./stylesheets/main.scss":"../src/stylesheets/main.scss","./Application":"../src/Application.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -51573,7 +51646,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64905" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51636" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
