@@ -8,13 +8,21 @@ export class Posts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            allComment: []
+            allComment: [],
+            commment: null
         };
     }
+    Comment = (select) => {
+        this.setState({
+            comment: select
+        });
+    };
+
     render() {
         return (
             <div>
-                <ListPost allComment={this.state.allComment}/>
+
+                <ListPost allComment={this.state.allComment} comment={this.state.comment} Comment={this.Comment} />
 
                 <Link className="btn btn-primary" to="/">
                     Retour vers la home

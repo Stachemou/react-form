@@ -56768,7 +56768,24 @@ var Persistent = function Persistent() {
 };
 
 exports.Persistent = Persistent;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/Listpost/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/Listpost/form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Form = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Form = function Form(props) {
+  return console.log('ksndfffsl');
+};
+
+exports.Form = Form;
+},{"react":"../node_modules/react/index.js"}],"../src/Listpost/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56778,23 +56795,38 @@ exports.ListPost = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _form = require("./form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ListPost = function ListPost(props) {
+  var allComment = props.allComment,
+      Comment = props.Comment;
+
   var CommentInfoList = function CommentInfoList() {
-    return props.allComment ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Object.keys(props.allComment).map(function (content, index) {
+    return props.allComment.map ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Object.keys(props.allComment).map(function (content, index) {
       return /*#__PURE__*/_react.default.createElement("li", {
         key: index,
         className: "list-group-item"
       }, content, ":", JSON.stringify(props.allComment[content]));
-    })) : null;
+    })) : /*#__PURE__*/_react.default.createElement("p", null);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(CommentInfoList, null)));
+  var addPost = function addPost() {
+    return /*#__PURE__*/_react.default.createElement(_form.Form, null);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "input-group my-3"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: addPost,
+    className: "btn btn-outline-secondary",
+    type: "button"
+  }, "Ajout d'un post")), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(CommentInfoList, null)));
 };
 
 exports.ListPost = ListPost;
-},{"react":"../node_modules/react/index.js"}],"../src/pages/Posts.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./form":"../src/Listpost/form.js"}],"../src/pages/Posts.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56840,6 +56872,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var Posts = /*#__PURE__*/function (_React$Component) {
   _inherits(Posts, _React$Component);
 
@@ -56851,8 +56885,16 @@ var Posts = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Posts);
 
     _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "Comment", function (select) {
+      _this.setState({
+        comment: select
+      });
+    });
+
     _this.state = {
-      allComment: []
+      allComment: [],
+      commment: null
     };
     return _this;
   }
@@ -56861,7 +56903,9 @@ var Posts = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_index.ListPost, {
-        allComment: this.state.allComment
+        allComment: this.state.allComment,
+        comment: this.state.comment,
+        Comment: this.Comment
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         className: "btn btn-primary",
         to: "/"
