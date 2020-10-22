@@ -1,7 +1,7 @@
 {
-  "name": "react-form",
+  "name": "react-form-j2",
   "version": "1.0.0",
-  "description": "Basic",
+  "description": "Basic usage of vercel with github",
   "main": "index.js",
   "scripts": {
     "start": "parcel ./public/index.html",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zaiden13/react-form.git"
+    "url": "git+https://github.com/usualpro/react-form-j2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zaiden13/react-form/issues"
+    "url": "https://github.com/usualpro/react-form-j2/issues"
   },
-  "homepage": "https://github.com/Zaiden13/react-form#readme",
+  "homepage": "https://github.com/usualpro/react-form-j2#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
     "sass": "^1.27.0"
@@ -24,12 +24,11 @@
   "dependencies": {
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
-    "lea": "^2.2.4",
+    "dexie": "^3.0.2",
     "leaflet": "^1.7.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": ">=15",
+    "react-dom": "^16.8.0",
     "react-leaflet": "^2.7.0",
-    "react-router-dom": "^5.2.0",
-    "styl": "^0.2.9"
+    "react-router-dom": "^5.2.0"
   }
 }

@@ -7,7 +7,9 @@ export const Home = props => <>
     <CustomMap onCountryClick={props.onCountryClick} allCountries={props.allCountries} />
     <div className='m-2 text-center'>
         <Link className='btn btn-primary' to='/todo'>Voir la liste des todos</Link>
-        <Link className='btn btn-primary' to='/persistent'>Persistent</Link>
+    </div>
+    <div className='m-2 text-center'>
+        <Link className='btn btn-primary' to='/posts'>Voir la liste des posts</Link>
     </div>
     <Infos currentCountry={props.currentCountry} />
 </>;

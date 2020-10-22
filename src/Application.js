@@ -3,7 +3,9 @@ import { Services } from './http-services';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { ToDo } from './pages/ToDo';
-import { Persistent} from './pages/Persistent'
+import { Persistent } from './pages/Persistent';
+import { Posts } from './pages/Posts';
+import './data/db';
 
 export class Application extends React.Component {
     constructor(props) {
@@ -29,6 +31,11 @@ export class Application extends React.Component {
                 </Route>
                 <Route render={props => <ToDo  {...props} />} exact path="/todo" />
                 <Route render={props => <Persistent  {...props} />} exact path="/persistent" />
+                <Route exact path="/posts">
+                    <Posts
+                    
+                    />
+                </Route>
             </Switch>
         </BrowserRouter>
     }
